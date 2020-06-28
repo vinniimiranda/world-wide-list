@@ -15,7 +15,6 @@ interface Country {
   }
 }
 
-
 function App () {
   const regions = [
     'Africa',
@@ -31,6 +30,30 @@ function App () {
     'es',
     'fr'
   ]
+
+  const infos = {
+    br: {
+      capital: 'Capital',
+      region: 'Região',
+      population: 'População'
+    },
+    de: {
+      capital: 'Hauptstadt',
+      region: 'Region',
+      population: 'Population'
+    },
+    es: {
+      capital: 'Capital',
+      region: 'Región',
+      population: 'Población'
+    },
+    fr: {
+      capital: 'Capitale',
+      region: 'Región',
+      population: 'Population'
+    }
+  }
+
   const [countries, setCountries] = useState<Country[]>([])
   const [selectedRegions, setSelectedRegions] = useState<String[]>(regions)
   const [search, setSearch] = useState('')
@@ -105,9 +128,9 @@ function App () {
                   <div className="country" >
                     <img className="flag" src={country.flag} alt={country.name} />
                     <span className="name">{country.translations[selectedLang]}</span>
-                    <span className="capital">Capital: {country.capital}</span>
-                    <span className="region">Continente: {country.region}</span>
-                    <span className="population">População: {country.population}</span>
+                    <span className="capital">{infos[selectedLang].capital}: {country.capital}</span>
+                    <span className="region">{infos[selectedLang].region}: {country.region}</span>
+                    <span className="population">{infos[selectedLang].population}: {country.population.toLocaleString('pt-BR', { minimumFractionDigits: 0 })}</span>
                   </div>
                 </div>
               ))}
